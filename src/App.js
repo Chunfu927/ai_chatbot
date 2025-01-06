@@ -28,7 +28,7 @@ function App() {
 
     try {
       const response = await axios.post('http://localhost:5000/generate', {
-        instruction,
+        instruction: newInstruction.text,
         temperature: temperature,
         max_length: maxLength,
       });
@@ -46,9 +46,18 @@ function App() {
 
   const submitFeedback = async () => {
     try {
+      if (!generatedText.length) {
+        alert('Generated text is required');
+        return;
+      }
+
+      // 確保只存取最新的 user 指令
+      const userInstruction = generatedText.filter(msg => msg.type === 'user').pop()?.text || '';
+      const botResponses = generatedText.filter(msg => msg.type === 'bot').map(msg => msg.text).join('\n');
+
       await axios.post('http://localhost:5000/feedback', {
-        instruction: instruction,
-        generated_text: generatedText.map((msg) => msg.text).join('\n'),
+        instruction: userInstruction,
+        generated_text: botResponses,
         ...feedback,
       });
       alert('Feedback submitted successfully!');

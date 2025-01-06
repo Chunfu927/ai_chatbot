@@ -23,7 +23,7 @@ body {
   width: 100%;
   max-width: 1000px;
   height: 100%;
-  max-height: 550px;
+  max-height: 900px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -36,6 +36,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  height: 100%;
+  max-height: 800px;
+  width: 100%;
 }
 
 .messages {
@@ -47,7 +50,7 @@ body {
   border-radius: 8px;
   border: 1px solid #ffffff;
   height: 100%;
-  max-height: 250px;
+  max-height: 300px;
   /*限制高度，避免版面問題*/
 }
 
